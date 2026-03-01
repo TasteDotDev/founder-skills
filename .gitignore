@@ -1,2 +1,7 @@
 .DS_Store
 dist/
+cli/node_modules/
+cli/dist/
+cli/bin/
+cli/skills/
+cli/src/skills/bundled-data.json

@@ -1,0 +1,132 @@
+import { Command } from 'commander';
+import chalk from 'chalk';
+import { getConfig, isConfigured, setConfig, showConfig } from './config.js';
+import { runAgent } from './agent.js';
+import { getAllCategories, getCategoryFrameworks } from './skills/loader.js';
+import { RECOMMENDED_MODELS } from './providers.js';
+import { runSetup } from './ui/setup.js';
+import { checkForUpdate, runUpdate } from './updater.js';
+import { VERSION } from './version.js';
+
+export function createProgram(): Command {
+  const program = new Command();
+
+  program
+    .name('founder')
+    .description('Business consultant in your terminal — 523 frameworks, any LLM')
+    .version(VERSION)
+    .argument('[input...]', 'Describe your business problem')
+    .option('-c, --category <category>', 'Use a specific category')
+    .option('-f, --framework <framework>', 'Use a specific framework')
+    .action(async (inputParts: string[], opts) => {
+      const input = inputParts.join(' ');
+      if (!input) {
+        program.help();
+        return;
+      }
+
+      if (!isConfigured()) {
+        await runSetup();
+      }
+
+      const config = getConfig();
+      await runAgent({
+        config,
+        input,
+        category: opts.category,
+        framework: opts.framework,
+      });
+    });
+
+  program
+    .command('list [category]')
+    .description('List categories or frameworks in a category')
+    .action(async (category?: string) => {
+      if (category) {
+        const frameworks = getCategoryFrameworks(category);
+        if (!frameworks.length) {
+          console.error(chalk.red(`Unknown category: ${category}`));
+          console.error(`Run ${chalk.cyan('founder list')} to see all categories.`);
+          process.exit(1);
+        }
+        console.log(chalk.bold(`\n${category} frameworks:\n`));
+        for (const fw of frameworks) {
+          console.log(`  ${chalk.cyan(fw.slug)} — ${fw.name}: ${fw.description}`);
+        }
+        console.log();
+      } else {
+        const categories = getAllCategories();
+        console.log(chalk.bold('\nAvailable categories:\n'));
+        for (const cat of categories) {
+          console.log(`  ${chalk.cyan(cat.name.padEnd(20))} ${chalk.dim(`${cat.frameworkCount} frameworks`)}  ${cat.description}`);
+        }
+        console.log(`\n  ${chalk.dim('Total: ' + categories.reduce((sum, c) => sum + c.frameworkCount, 0) + ' frameworks')}\n`);
+      }
+    });
+
+  const configCmd = program
+    .command('config')
+    .description('Show or update configuration');
+
+  configCmd
+    .command('show', { isDefault: true })
+    .description('Show current config')
+    .action(() => {
+      const cfg = showConfig();
+      console.log(chalk.bold('\nCurrent configuration:\n'));
+      for (const [key, value] of Object.entries(cfg)) {
+        if (value !== undefined) {
+          console.log(`  ${chalk.cyan(key.padEnd(12))} ${value}`);
+        }
+      }
+      console.log();
+    });
+
+  configCmd
+    .command('set <key> <value>')
+    .description('Set a config value (provider, model, apiKey, baseUrl)')
+    .action((key: string, value: string) => {
+      try {
+        setConfig(key, value);
+        console.log(chalk.green(`Set ${key} = ${key === 'apiKey' ? value.slice(0, 8) + '...' : value}`));
+      } catch (e: any) {
+        console.error(chalk.red(e.message));
+        process.exit(1);
+      }
+    });
+
+  configCmd
+    .command('setup')
+    .description('Run interactive setup wizard')
+    .action(async () => {
+      await runSetup();
+    });
+
+  program
+    .command('models')
+    .description('List recommended models per provider')
+    .action(() => {
+      console.log(chalk.bold('\nRecommended models:\n'));
+      for (const [provider, models] of Object.entries(RECOMMENDED_MODELS)) {
+        console.log(`  ${chalk.cyan(provider.padEnd(14))} ${models.join(', ')}`);
+      }
+      console.log();
+    });
+
+  program
+    .command('update')
+    .description('Update founder to the latest version')
+    .action(async () => {
+      await runUpdate();
+    });
+
+  return program;
+}
+
+export async function run(argv: string[]): Promise<void> {
+  // Non-blocking update check
+  checkForUpdate().catch(() => {});
+
+  const program = createProgram();
+  await program.parseAsync(argv);
+}
