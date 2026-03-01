@@ -1,14 +1,11 @@
 <p align="center">
-  <h1 align="center">Founder Skills</h1>
-  <p align="center">
-    <strong>523 business frameworks. One slash command. Instant answers.</strong>
-  </p>
-  <p align="center">
-    <a href="#quick-start">Quick Start</a> &bull;
-    <a href="#the-founder-command">The /founder Command</a> &bull;
-    <a href="#all-skills">All Skills</a> &bull;
-    <a href="#multi-platform">Multi-Platform</a>
-  </p>
+  <img src="assets/banner.svg" alt="Founder Skills — 523 business frameworks, one slash command" width="100%"/>
+</p>
+<p align="center">
+  <a href="#quick-start">Quick Start</a> &bull;
+  <a href="#the-founder-command">The /founder Command</a> &bull;
+  <a href="#all-commands">All Commands</a> &bull;
+  <a href="#multi-platform">Multi-Platform</a>
 </p>
 
 ---
@@ -85,6 +82,10 @@ That's it. `/founder` figures out you need Four Fits + Growth Accounting + Unit 
 ```
 
 **The secret sauce:** Every analysis ends with an assumptions table and a "here's how to test this before committing" section. Because the honest answer to most strategy questions is *"it depends, and here's how to find out."*
+
+<p align="center">
+  <img src="assets/terminal-mockup.svg" alt="Terminal showing /founder in action" width="100%"/>
+</p>
 
 ---
 
@@ -260,6 +261,26 @@ These frameworks come from decades of the best business thinking:
 | **Communication** | Barbara Minto, Chip & Dan Heath, Jonah Berger |
 
 We built the prompts. They built the ideas. Credit where it's due.
+
+---
+
+## Meanwhile...
+
+<p align="center">
+  <img src="assets/meme-drake.svg" alt="Drake meme: reading 47 books vs /founder" width="500"/>
+</p>
+
+<details>
+<summary>More memes</summary>
+
+<p align="center">
+  <img src="assets/meme-consultant.svg" alt="Consultant vs /founder" width="600"/>
+</p>
+<p align="center">
+  <img src="assets/meme-mba.svg" alt="$150K MBA vs /founder" width="600"/>
+</p>
+
+</details>
 
 ---
 
