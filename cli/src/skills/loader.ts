@@ -1,8 +1,13 @@
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-// Static import so bun embeds this into compiled binaries
-import bundledDataJson from './bundled-data.json' with { type: 'json' };
+
+// Try static import for bun-compiled binaries. Falls back gracefully for node/npm.
+let bundledDataJson: any = null;
+try {
+  // @ts-ignore — this import is resolved by bun compile, not by tsup/node
+  bundledDataJson = (await import('./bundled-data.json', { with: { type: 'json' } })).default;
+} catch {}
 
 export interface Framework {
   name: string;
@@ -39,16 +44,17 @@ function getBundledData(): Record<string, BundledCategory> | null {
 function getSkillsDir(): string | null {
   const thisDir = dirname(fileURLToPath(import.meta.url));
 
-  // In npm package: cli/skills/ (sibling to dist/)
-  const packageSkills = join(thisDir, '..', '..', 'skills');
-  if (existsSync(join(packageSkills, 'founder', 'SKILL.md'))) {
-    return packageSkills;
-  }
-
-  // In dev: ../skills/ (project root)
-  const devSkills = join(thisDir, '..', '..', '..', 'skills');
-  if (existsSync(join(devSkills, 'founder', 'SKILL.md'))) {
-    return devSkills;
+  // Walk up from current file looking for skills/founder/SKILL.md
+  // Handles: dist/index.js (1 up), src/skills/loader.ts (3 up), etc.
+  let dir = thisDir;
+  for (let i = 0; i < 5; i++) {
+    const candidate = join(dir, 'skills');
+    if (existsSync(join(candidate, 'founder', 'SKILL.md'))) {
+      return candidate;
+    }
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
   }
 
   // Fallback: FOUNDER_SKILLS_DIR env var
