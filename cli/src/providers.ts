@@ -17,34 +17,42 @@ export const RECOMMENDED_MODELS: Record<string, string[]> = {
 export async function getModel(config: Config) {
   const modelId = config.model ?? DEFAULT_MODELS[config.provider] ?? 'gpt-4o';
 
+  let model;
   switch (config.provider) {
     case 'anthropic': {
       const { createAnthropic } = await import('@ai-sdk/anthropic');
-      return createAnthropic({ apiKey: config.apiKey })(modelId);
+      model = createAnthropic({ apiKey: config.apiKey })(modelId);
+      break;
     }
     case 'openai': {
       const { createOpenAI } = await import('@ai-sdk/openai');
-      return createOpenAI({ apiKey: config.apiKey })(modelId);
+      model = createOpenAI({ apiKey: config.apiKey })(modelId);
+      break;
     }
     case 'google': {
       const { createGoogleGenerativeAI } = await import('@ai-sdk/google');
-      return createGoogleGenerativeAI({ apiKey: config.apiKey })(modelId);
+      model = createGoogleGenerativeAI({ apiKey: config.apiKey })(modelId);
+      break;
     }
     case 'openrouter': {
       const { createOpenAI } = await import('@ai-sdk/openai');
-      return createOpenAI({
+      model = createOpenAI({
         baseURL: 'https://openrouter.ai/api/v1',
         apiKey: config.apiKey,
       })(modelId);
+      break;
     }
     case 'custom': {
       const { createOpenAI } = await import('@ai-sdk/openai');
-      return createOpenAI({
+      model = createOpenAI({
         baseURL: config.baseUrl!,
         apiKey: config.apiKey,
       })(modelId);
+      break;
     }
     default:
       throw new Error(`Unknown provider: ${config.provider}`);
   }
+
+  return { model, modelId };
 }

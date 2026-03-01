@@ -1,5 +1,7 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
+import { existsSync } from 'fs';
+import { join } from 'path';
 import { getConfig, isConfigured, setConfig, showConfig } from './config.js';
 import { runAgent } from './agent.js';
 import { getAllCategories, getCategoryFrameworks } from './skills/loader.js';
@@ -8,6 +10,12 @@ import { runSetup } from './ui/setup.js';
 import { checkForUpdate, runUpdate } from './updater.js';
 import { VERSION } from './version.js';
 import { handleCompletions, generateBashCompletion, generateZshCompletion, generateFishCompletion } from './completion.js';
+import { startRepl } from './repl.js';
+
+function detectProject(): boolean {
+  const markers = ['package.json', 'Cargo.toml', 'pyproject.toml', 'go.mod', 'Gemfile', 'pom.xml', 'build.gradle', '.git', 'README.md'];
+  return markers.some((m) => existsSync(join(process.cwd(), m)));
+}
 
 export function createProgram(): Command {
   const program = new Command();
@@ -22,7 +30,7 @@ export function createProgram(): Command {
     .action(async (inputParts: string[], opts) => {
       const input = inputParts.join(' ');
       if (!input) {
-        program.help();
+        await startRepl();
         return;
       }
 
@@ -31,11 +39,13 @@ export function createProgram(): Command {
       }
 
       const config = getConfig();
+      const allowFileAccess = detectProject();
       await runAgent({
         config,
         input,
         category: opts.category,
         framework: opts.framework,
+        allowFileAccess,
       });
     });
 
