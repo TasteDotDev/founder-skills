@@ -1,40 +1,58 @@
-# Founder Skills for Claude Code
+# Founder Skills
 
-**523 AI-powered business frameworks** as [Claude Code skills](https://docs.anthropic.com/en/docs/claude-code/skills). The complete toolkit for founders and product managers — strategy, finance, leadership, growth, and behavioral science — available as slash commands in your terminal.
+**523 AI-powered business frameworks** for founders and product managers — strategy, finance, leadership, growth, and behavioral science.
+
+Works with **Claude Code**, **OpenAI GPTs/Assistants**, **Gemini Gems/API**, and as **standalone prompts**.
 
 Includes modern frameworks from **Reforge, a16z, Y Combinator, Sequoia, First Round Capital**, and growth leaders at **Uber, Airbnb, Stripe, Datadog, and Figma**. Plus AI-era frameworks for agent design, AI GTM, and AI pricing.
 
 ## Quick start
 
-### Install
+### Claude Code (recommended)
 
 ```bash
-# Clone into your personal Claude Code skills directory (works across all projects)
-git clone https://github.com/FounderSkills/FounderSkills ~/.claude/skills/founder-skills
+# Install as a Claude Code skill (works across all projects)
+git clone https://github.com/TasteDotDev/FounderSkills ~/.claude/skills/founder-skills
 
 # Or for a specific project only
-git clone https://github.com/FounderSkills/FounderSkills .claude/skills/founder-skills
+git clone https://github.com/TasteDotDev/FounderSkills .claude/skills/founder-skills
 ```
 
-### Use
+Then use slash commands:
 
 ```
-# Just describe your problem — /founder figures out the right frameworks
 /founder We're a 50-person B2B SaaS doing $5M ARR, growth slowed from 3x to 1.5x
-
-# Or go direct to a category
 /strategy swot-analysis for a B2B SaaS entering the European market
-
-# Let Claude pick the best framework within a category
 /finance analyze unit economics for our marketplace startup
-
-# List all available frameworks in a category
 /innovation
 ```
 
+### OpenAI (GPTs & Assistants)
+
+```bash
+# Generate platform-specific files
+git clone https://github.com/TasteDotDev/FounderSkills
+cd FounderSkills
+python3 build.py
+```
+
+**GPTs**: Upload `dist/openai/gpts/<category>/instructions.md` as the GPT instructions and `knowledge/frameworks.md` as a knowledge file.
+
+**Assistants API**: Use the config in `dist/openai/assistants/<category>.json` and upload `files/<category>-frameworks.md` to a vector store.
+
+### Gemini (Gems & API)
+
+**Gems**: Upload `dist/gemini/gems/<category>/instructions.md` as the Gem instructions and `knowledge/frameworks.md` as a knowledge file.
+
+**API**: Use `dist/gemini/api/<category>.md` as the system prompt — it includes all framework details inline.
+
+### Standalone
+
+Individual framework prompts in `dist/standalone/<category>/<framework>.md` — self-contained, works with any LLM.
+
 ## The `/founder` master skill
 
-[`/founder`](./founder/SKILL.md) is your **AI business consultant**. Describe any business problem and it will:
+[`/founder`](./skills/founder/SKILL.md) is your **AI business consultant**. Describe any business problem and it will:
 
 1. **Diagnose** — identify the problem type, scope, and missing context
 2. **Select** — pick the 2-4 best frameworks from 523 options across 15 categories
@@ -55,22 +73,58 @@ No need to know which framework to use. `/founder` handles that for you.
 
 | Skill | Frameworks | Examples |
 |-------|-----------|----------|
-| [`/founder`](./founder/SKILL.md) | **all 523** | **Master skill — analyzes your problem and applies the right frameworks automatically** |
-| [`/communication`](./communication/SKILL.md) | 38 | Pyramid Principle, SCQA, Elevator Pitch, Storytelling, Crisis Comms |
-| [`/decision-making`](./decision-making/SKILL.md) | 39 | Decision Matrix, Cynefin, Pre-Mortem, Eisenhower Matrix, OODA Loop |
-| [`/design`](./design/SKILL.md) | 27 | Design Thinking, UX Research, Service Blueprint, Accessibility Audit |
-| [`/finance`](./finance/SKILL.md) | 46 | Sequoia Pitch Deck, YC Seed Deck, SAFE Notes, Growth Accounting, AI Pricing, Unit Economics |
-| [`/innovation`](./innovation/SKILL.md) | 50 | Superhuman PMF Engine, AI Agent Framework, Continuous Discovery, Amazon PR/FAQ, RICE/ICE |
-| [`/leadership`](./leadership/SKILL.md) | 33 | Founder Mode, Situational Leadership, Radical Candor, Servant Leadership, GROW Model |
-| [`/marketing`](./marketing/SKILL.md) | 54 | PLG Flywheel, Build in Public, TikTok Growth, Viral Content, Community-Led, Dark Social |
-| [`/mental-models`](./mental-models/SKILL.md) | 23 | First Principles, Inversion, Second-Order Thinking, Occam's Razor |
-| [`/negotiation`](./negotiation/SKILL.md) | 22 | BATNA, Harvard Method, Anchoring, ZOPA Analysis, Negotiation Playbook |
-| [`/operations`](./operations/SKILL.md) | 25 | Lean, Six Sigma, Theory of Constraints, Kaizen, Value Stream Mapping |
-| [`/organization`](./organization/SKILL.md) | 40 | Async-First Culture, McKinsey 7S, RACI Matrix, Kotter's 8-Step Change, Team Topologies |
-| [`/productivity`](./productivity/SKILL.md) | 34 | GTD, Deep Work, OKRs, Time Blocking, Pomodoro, SMART Goals |
-| [`/psychology`](./psychology/SKILL.md) | 14 | Nudge Theory, Cognitive Bias Audit, Flow State, Prospect Theory |
-| [`/sales`](./sales/SKILL.md) | 30 | Cold Email Framework, Land & Expand, Product-Led Sales, MEDDIC, Challenger Sale |
-| [`/strategy`](./strategy/SKILL.md) | 48 | SWOT, Porter's Five Forces, Blitzscaling, Four Fits, Cold Start Problem, AI GTM |
+| [`/founder`](./skills/founder/SKILL.md) | **all 523** | **Master skill — analyzes your problem and applies the right frameworks automatically** |
+| [`/communication`](./skills/communication/SKILL.md) | 38 | Pyramid Principle, SCQA, Elevator Pitch, Storytelling, Crisis Comms |
+| [`/decision-making`](./skills/decision-making/SKILL.md) | 39 | Decision Matrix, Cynefin, Pre-Mortem, Eisenhower Matrix, OODA Loop |
+| [`/design`](./skills/design/SKILL.md) | 27 | Design Thinking, UX Research, Service Blueprint, Accessibility Audit |
+| [`/finance`](./skills/finance/SKILL.md) | 46 | Sequoia Pitch Deck, YC Seed Deck, SAFE Notes, Growth Accounting, AI Pricing, Unit Economics |
+| [`/innovation`](./skills/innovation/SKILL.md) | 50 | Superhuman PMF Engine, AI Agent Framework, Continuous Discovery, Amazon PR/FAQ, RICE/ICE |
+| [`/leadership`](./skills/leadership/SKILL.md) | 33 | Founder Mode, Situational Leadership, Radical Candor, Servant Leadership, GROW Model |
+| [`/marketing`](./skills/marketing/SKILL.md) | 54 | PLG Flywheel, Build in Public, TikTok Growth, Viral Content, Community-Led, Dark Social |
+| [`/mental-models`](./skills/mental-models/SKILL.md) | 23 | First Principles, Inversion, Second-Order Thinking, Occam's Razor |
+| [`/negotiation`](./skills/negotiation/SKILL.md) | 22 | BATNA, Harvard Method, Anchoring, ZOPA Analysis, Negotiation Playbook |
+| [`/operations`](./skills/operations/SKILL.md) | 25 | Lean, Six Sigma, Theory of Constraints, Kaizen, Value Stream Mapping |
+| [`/organization`](./skills/organization/SKILL.md) | 40 | Async-First Culture, McKinsey 7S, RACI Matrix, Kotter's 8-Step Change, Team Topologies |
+| [`/productivity`](./skills/productivity/SKILL.md) | 34 | GTD, Deep Work, OKRs, Time Blocking, Pomodoro, SMART Goals |
+| [`/psychology`](./skills/psychology/SKILL.md) | 14 | Nudge Theory, Cognitive Bias Audit, Flow State, Prospect Theory |
+| [`/sales`](./skills/sales/SKILL.md) | 30 | Cold Email Framework, Land & Expand, Product-Led Sales, MEDDIC, Challenger Sale |
+| [`/strategy`](./skills/strategy/SKILL.md) | 48 | SWOT, Porter's Five Forces, Blitzscaling, Four Fits, Cold Start Problem, AI GTM |
+
+## Building multi-platform dist
+
+```bash
+python3 build.py          # Build all platforms
+python3 build.py --clean  # Clean and rebuild
+```
+
+Output structure:
+
+```
+dist/
+  openai/
+    gpts/<category>/instructions.md + knowledge/frameworks.md
+    assistants/<category>.json + files/<category>-frameworks.md
+  gemini/
+    gems/<category>/instructions.md + knowledge/frameworks.md
+    api/<category>.md
+  standalone/<category>/<framework-slug>.md
+  manifest.json
+```
+
+Tagged releases on GitHub include pre-built `dist/` as a downloadable artifact.
+
+## What's inside each skill
+
+Every skill has two files:
+
+```
+skills/strategy/
+├── SKILL.md          # Main skill — instructions + framework list
+└── frameworks.md     # Detailed reference — expert prompts, inputs, when-to-use
+```
+
+- **SKILL.md** is what Claude loads when you invoke the skill. It contains the framework catalog and output standards.
+- **frameworks.md** is the detailed reference that Claude reads when applying a specific framework. It contains the expert system prompt, required inputs, and origin attribution for each framework.
 
 ## What's new (modern frameworks)
 
@@ -120,19 +174,6 @@ These frameworks reflect the latest thinking from top VCs, growth leaders, and A
 - **AI Product Pricing** — per-seat vs. per-output vs. usage-based for AI
 - **AI Future Scenario Planning** — how AI reshapes your industry over 1/3/5 years
 
-## What's inside each skill
-
-Every skill has two files:
-
-```
-strategy/
-├── SKILL.md          # Main skill — instructions + framework list
-└── frameworks.md     # Detailed reference — expert prompts, inputs, when-to-use
-```
-
-- **SKILL.md** is what Claude loads when you invoke the skill. It contains the framework catalog and output standards.
-- **frameworks.md** is the detailed reference that Claude reads when applying a specific framework. It contains the expert system prompt, required inputs, and origin attribution for each framework.
-
 ## Output quality
 
 Every framework output follows these standards:
@@ -165,4 +206,4 @@ To add a new framework:
 
 ## License
 
-MIT
+MIT License. Copyright (c) taste.dev
