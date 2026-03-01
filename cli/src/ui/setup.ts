@@ -155,10 +155,16 @@ async function fetchOpenAIModels(apiKey: string): Promise<string[]> {
 async function fetchGoogleModels(apiKey: string): Promise<string[]> {
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
   if (!res.ok) return [];
-  const data = await res.json() as { models?: { name: string }[] };
+  const data = await res.json() as { models?: { name: string; supportedGenerationMethods?: string[] }[] };
   const models = (data.models ?? [])
+    .filter(m => {
+      const methods = m.supportedGenerationMethods ?? [];
+      return methods.includes('generateContent');
+    })
     .map(m => m.name.replace('models/', ''))
-    .filter(m => m.startsWith('gemini-'));
+    .filter(m => m.startsWith('gemini-'))
+    // Exclude preview models that have tool-calling issues
+    .filter(m => !m.includes('3.1-pro-preview') && !m.includes('3-pro-preview'));
   return models
     .sort((a, b) => b.localeCompare(a))
     .slice(0, 10);
