@@ -26,8 +26,7 @@
 
     <!-- Right panel -->
     <rect x="172" y="0" width="312" height="184" rx="12" fill="#1a1a1a" stroke="#f97316" stroke-width="1.5"/>
-    <text x="192" y="50" font-family="ui-monospace, 'SF Mono', monospace" font-size="14" fill="#71717a">$</text>
-    <text x="208" y="50" font-family="ui-monospace, 'SF Mono', monospace" font-size="18" font-weight="bold" fill="#f97316">/founder</text>
+    <text x="192" y="50" font-family="ui-monospace, 'SF Mono', monospace" font-size="18" font-weight="bold" fill="#f97316">/founder</text>
     <text x="192" y="85" font-family="ui-monospace, monospace" font-size="13" fill="#a6e3a1">523 frameworks</text>
     <text x="192" y="108" font-family="ui-monospace, monospace" font-size="13" fill="#a6e3a1">30 seconds</text>
     <text x="192" y="131" font-family="ui-monospace, monospace" font-size="13" fill="#a6e3a1">actually specific to your business</text>
