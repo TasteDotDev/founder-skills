@@ -32,7 +32,16 @@ Works with **Claude Code**, **OpenAI Codex**, **Gemini CLI**, and any agent that
 claude install github:TasteDotDev/founder-skills
 ```
 
-Then use `/founder` in any conversation — or `/strategy`, `/marketing`, `/finance`, etc.
+After install, use slash commands:
+
+```
+/founder We're doing $5M ARR but growth slowed to 1.5x
+/strategy Apply Porter's Five Forces to our market
+/marketing What growth loops work for a B2B SaaS at $2M ARR?
+/finance Build a unit economics model for our freemium product
+```
+
+All 16 categories are available as `/commands`. Type `/` to see the full list.
 
 ### OpenAI Codex
 
@@ -49,7 +58,13 @@ git clone https://github.com/TasteDotDev/founder-skills
 cp -r founder-skills/skills/* ~/.agents/skills/
 ```
 
-Codex scans `~/.agents/skills/` and `.agents/skills/` in your repo automatically.
+After install, Codex auto-activates skills when your prompt matches. You can also invoke directly:
+
+```
+$founder Our churn spiked to 8% after the last pricing change
+$strategy Should we go upmarket or double down on SMB?
+$sales Design a cold outbound sequence for enterprise CTOs
+```
 
 ### Gemini CLI
 
@@ -57,13 +72,29 @@ Codex scans `~/.agents/skills/` and `.agents/skills/` in your repo automatically
 gemini skills install https://github.com/TasteDotDev/founder-skills --path skills
 ```
 
-All 16 skills install to `~/.gemini/skills/` and activate automatically when your query matches.
+After install, skills activate automatically when your query matches. Just ask naturally:
+
+```
+How should I price my API product?
+We need to cut burn rate — what frameworks help here?
+Help me prepare for a Series A negotiation
+```
+
+Gemini picks the right skill(s) based on your question. Run `gemini skills list` to see all installed skills.
 
 ### Founder CLI (standalone, any LLM)
 
 ```bash
 npm i -g @taste.dev/founder
+```
+
+After install, use directly from your terminal:
+
+```bash
 founder "how do I price my SaaS?"
+founder                              # interactive REPL mode
+founder list                         # browse all categories
+founder list strategy                # see strategy frameworks
 ```
 
 Works with Anthropic, OpenAI, Google, OpenRouter. See [founder-cli](https://github.com/TasteDotDev/founder-cli).
