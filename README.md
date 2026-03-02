@@ -23,7 +23,7 @@ Works with **Claude Code**, **OpenAI Codex**, **Gemini CLI**, and any agent that
 ## Install
 
 <p align="center">
-  <img src="assets/install.svg" alt="Install on Claude Code, Codex, and Gemini CLI" width="100%"/>
+  <img src="assets/providers.svg" alt="Install on Claude Code, Codex, Gemini CLI, or Founder CLI" width="100%"/>
 </p>
 
 ### Claude Code
@@ -114,6 +114,10 @@ Every answer ends with an assumptions table, a challenge section, and testable n
 
 ## What's Inside
 
+<p align="center">
+  <img src="assets/categories.svg" alt="568 frameworks across 16 categories" width="100%"/>
+</p>
+
 | Category | # | Highlights |
 |----------|---|---------|
 | **strategy** | 48 | Porter's Five Forces, Blitzscaling, Wardley Maps, Blue Ocean, Cold Start |
@@ -136,6 +140,13 @@ Every answer ends with an assumptions table, a challenge section, and testable n
 Plus **`/founder`** — the meta-skill that diagnoses your problem and picks the right frameworks automatically.
 
 ## Example
+
+<p align="center">
+  <img src="assets/example.svg" alt="Founder Skills terminal example" width="100%"/>
+</p>
+
+<details>
+<summary>Text version</summary>
 
 ```
 You:     /founder We're doing $5M ARR but growth slowed to 1.5x
@@ -160,6 +171,8 @@ Founder: Diagnosing: Growth stall at $5M ARR — classic Series A plateau
          this entire analysis changes.
          Validate: Interview 10 churned customers this week.
 ```
+
+</details>
 
 ## Contributing
 

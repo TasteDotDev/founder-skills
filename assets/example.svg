@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f0f0f"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" rx="16" fill="url(#bg)"/>
+
+  <!-- Terminal chrome -->
+  <rect x="24" y="16" width="752" height="448" rx="12" fill="#1e1e2e" stroke="#27272a" stroke-width="1"/>
+  <circle cx="48" cy="36" r="6" fill="#ef4444" opacity="0.8"/>
+  <circle cx="68" cy="36" r="6" fill="#eab308" opacity="0.8"/>
+  <circle cx="88" cy="36" r="6" fill="#22c55e" opacity="0.8"/>
+  <text x="380" y="40" font-family="ui-monospace, monospace" font-size="11" fill="#71717a" text-anchor="middle">founder</text>
+
+  <!-- Terminal content -->
+  <!-- User input -->
+  <text x="44" y="72" font-family="ui-monospace, monospace" font-size="12" fill="#22d3ee">you &gt;</text>
+  <text x="96" y="72" font-family="ui-monospace, monospace" font-size="12" fill="#e4e4e7">We're doing $5M ARR but growth slowed to 1.5x</text>
+
+  <!-- Divider -->
+  <rect x="44" y="84" width="712" height="1" fill="#27272a"/>
+
+  <!-- Model line -->
+  <text x="44" y="104" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">claude-sonnet-4 · applying 3 frameworks</text>
+
+  <!-- Diagnosis -->
+  <text x="44" y="130" font-family="ui-monospace, monospace" font-size="13" font-weight="bold" fill="#f97316">Diagnosing: Growth stall at $5M ARR</text>
+  <text x="44" y="150" font-family="ui-monospace, monospace" font-size="11" fill="#a1a1aa">Classic Series A plateau — need to identify which fit is broken.</text>
+
+  <!-- Framework selection -->
+  <text x="44" y="178" font-family="ui-monospace, monospace" font-size="11" fill="#71717a">Selecting frameworks:</text>
+  <text x="44" y="198" font-family="ui-monospace, monospace" font-size="11" fill="#a78bfa">  1. Four Fits Framework</text>
+  <text x="230" y="198" font-family="ui-monospace, monospace" font-size="11" fill="#71717a">— which fit is broken?</text>
+  <text x="44" y="216" font-family="ui-monospace, monospace" font-size="11" fill="#a78bfa">  2. Growth Accounting</text>
+  <text x="230" y="216" font-family="ui-monospace, monospace" font-size="11" fill="#71717a">— where is growth leaking?</text>
+  <text x="44" y="234" font-family="ui-monospace, monospace" font-size="11" fill="#a78bfa">  3. Unit Economics</text>
+  <text x="230" y="234" font-family="ui-monospace, monospace" font-size="11" fill="#71717a">— is growth worth accelerating?</text>
+
+  <!-- Analysis -->
+  <text x="44" y="264" font-family="ui-monospace, monospace" font-size="13" font-weight="bold" fill="#4ade80">## Market-Product Fit</text>
+  <text x="44" y="284" font-family="ui-monospace, monospace" font-size="11" fill="#d4d4d8">Your ICP shifted. Early adopters were SMB but your pricing</text>
+  <text x="44" y="302" font-family="ui-monospace, monospace" font-size="11" fill="#d4d4d8">($500/mo) and feature set now attract mid-market. This creates</text>
+  <text x="44" y="320" font-family="ui-monospace, monospace" font-size="11" fill="#d4d4d8">a channel-model mismatch: you're running PLG for a segment</text>
+  <text x="44" y="338" font-family="ui-monospace, monospace" font-size="11" fill="#d4d4d8">that needs sales touches.</text>
+
+  <!-- Assumption box -->
+  <rect x="44" y="354" width="712" height="52" rx="6" fill="#f97316" opacity="0.08"/>
+  <rect x="44" y="354" width="3" height="52" rx="1" fill="#f97316"/>
+  <text x="58" y="374" font-family="ui-monospace, monospace" font-size="12" font-weight="bold" fill="#f97316">Load-Bearing Assumption</text>
+  <text x="58" y="394" font-family="ui-monospace, monospace" font-size="11" fill="#d4d4d8">If churn is product-driven (not price-driven), this entire</text>
+  <text x="58" y="408" font-family="ui-monospace, monospace" font-size="11" fill="#d4d4d8">analysis changes. Validate: interview 10 churned customers this week.</text>
+
+  <!-- Stats line -->
+  <rect x="44" y="420" width="712" height="1" fill="#27272a"/>
+  <text x="44" y="440" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">3 frameworks applied</text>
+  <text x="200" y="440" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">·</text>
+  <text x="216" y="440" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">5 assumptions surfaced</text>
+  <text x="400" y="440" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">·</text>
+  <text x="416" y="440" font-family="ui-monospace, monospace" font-size="10" fill="#71717a">3 testable next steps</text>
+
+  <!-- Prompt -->
+  <text x="44" y="460" font-family="ui-monospace, monospace" font-size="12" fill="#22d3ee">you &gt;</text>
+  <rect x="96" y="449" width="8" height="14" fill="#22d3ee" opacity="0.6"/>
+</svg>
