@@ -37,13 +37,13 @@ Then use `/founder` in any conversation — or `/strategy`, `/marketing`, `/fina
 ### OpenAI Codex
 
 ```bash
-codex install github:TasteDotDev/founder-skills
+codex install https://github.com/TasteDotDev/founder-skills --path skills
 ```
 
 ### Gemini CLI
 
 ```bash
-gemini install github:TasteDotDev/founder-skills
+gemini skills install https://github.com/TasteDotDev/founder-skills --path skills
 ```
 
 ### Founder CLI (standalone, any LLM)
