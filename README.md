@@ -202,4 +202,4 @@ No build step. No compilation. Just markdown that any AI agent can read.
 
 ## License
 
-MIT — use it, fork it, sell courses about it, we don't care. Just make better decisions.
+MIT © [taste.dev](https://taste.dev)
